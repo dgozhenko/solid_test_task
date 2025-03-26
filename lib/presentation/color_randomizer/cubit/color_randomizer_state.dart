@@ -1,0 +1,13 @@
+part of 'color_randomizer_cubit.dart';
+
+/// State for Color Randomizer Cubit
+/// contains [backgroundColor, textColor, showTipText] parameters
+@freezed
+class ColorRandomizerState with _$ColorRandomizerState {
+  /// Constructor
+  const factory ColorRandomizerState({
+    required Color backgroundColor,
+    required Color textColor,
+    required bool showTipText,
+  }) = _ColorRandomizerState;
+}
