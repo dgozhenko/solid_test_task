@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solid_test_task/presentation/color_gallery/color_gallery_page.dart';
 import 'package:solid_test_task/presentation/color_randomizer/color_randomizer_page.dart';
 
 /// Bottom navigation page of app
@@ -16,7 +17,7 @@ class _MainBottomNavigationPageState extends State<MainBottomNavigationPage> {
   int currentBottomNavigationIndex = 0;
   final bodies = [
     const ColorRandomizerPage(),
-    const Center(child: Text('Gallery',),),
+    const ColorGalleryPage(),
   ];
 
   @override
