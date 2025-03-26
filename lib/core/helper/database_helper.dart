@@ -26,7 +26,7 @@ class DatabaseHelper {
       version: 1,
       onCreate: (database, _) async {
         await database.execute(
-          'CREATE TABLE colors(id INTEGER PRIMARY KEY, hexString TEXT)',
+          'CREATE TABLE colors(hexString TEXT PRIMARY KEY)',
         );
       },
     );

@@ -16,16 +16,28 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ColorRandomizerCubit, ColorRandomizerState>(
-      listener: (_, _) {},
+      listener: (context, state) {
+        if (state.showDatabaseSaveSuccess == null) return;
+        if (state.showDatabaseSaveSuccess == false) return;
+        if (state.error != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.error ?? '')),
+          );
+
+          return;
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Color saved to database')),
+        );
+      },
       builder: (context, state) {
         return InkWell(
           onTap: () {
             context.read<ColorRandomizerCubit>().generateRandomColors();
           },
-          onLongPress: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Color Saved To Gallery')),
-            );
+          onLongPress: () async {
+            await context.read<ColorRandomizerCubit>().saveColor();
           },
           child: AnimatedContainer(
             decoration: BoxDecoration(color: state.backgroundColor),
@@ -46,10 +58,7 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
                           ),
                         ),
                         AnimatedOpacity(
-                          opacity:
-                             state.showTipText
-                                  ? 1.0
-                                  : 0.0,
+                          opacity: state.showTipText ? 1.0 : 0.0,
                           duration: const Duration(milliseconds: 300),
                           child: Text(
                             '(Try long tap color if you like it)',

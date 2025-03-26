@@ -9,5 +9,7 @@ class ColorRandomizerState with _$ColorRandomizerState {
     required Color backgroundColor,
     required Color textColor,
     required bool showTipText,
+    String? error,
+    bool? showDatabaseSaveSuccess,
   }) = _ColorRandomizerState;
 }

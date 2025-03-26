@@ -3,14 +3,20 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:solid_test_task/core/extension/hex_color.dart';
+import 'package:solid_test_task/domain/model/color.dart';
+import 'package:solid_test_task/domain/repository/color_repository.dart';
 
 part 'color_randomizer_cubit.freezed.dart';
 part 'color_randomizer_state.dart';
 
 /// Color Randomizer Cubit contains business logic for Color Randomizer Page
 class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
+  /// color repository for storing colors
+  final ColorRepository colorRepository;
+
   /// Constructor with initial values
-  ColorRandomizerCubit()
+  ColorRandomizerCubit({required this.colorRepository})
     : super(
         const ColorRandomizerState(
           backgroundColor: Color(0xffffffff),
@@ -37,5 +43,25 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
         showTipText: true,
       ),
     );
+  }
+  /// save color to database
+  Future<void> saveColor() async {
+    try {
+      final hexString = state.backgroundColor.toHex();
+
+      await colorRepository.insertColor(
+        ColorModel(hexString: hexString).toMap(),
+      );
+      emit(state.copyWith(showDatabaseSaveSuccess: true));
+      await Future.delayed(const Duration(seconds: 2)).then((_) {
+        clearDatabaseSaveToast();
+      });
+    } catch (e) {
+      emit(state.copyWith(error: e.toString()));
+    }
+  }
+  /// clear database save toast
+  void clearDatabaseSaveToast() {
+    emit(state.copyWith(showDatabaseSaveSuccess: null));
   }
 }
