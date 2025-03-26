@@ -44,7 +44,7 @@ class App extends StatelessWidget {
           ),
           home: const MainBottomNavigationPage(),
           routes: {
-            ColorDetailPage.routeName: (_) => const ColorDetailPage()
+            ColorDetailPage.routeName: (_) => const ColorDetailPage(),
           },
         ),
       ),

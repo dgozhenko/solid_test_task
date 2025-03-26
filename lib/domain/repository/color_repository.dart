@@ -1,4 +1,4 @@
-import 'package:solid_test_task/domain/model/color.dart';
+import 'package:solid_test_task/domain/model/color_model.dart';
 
 /// Abstract class for color repository
 abstract class ColorRepository {

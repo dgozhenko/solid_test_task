@@ -1,5 +1,6 @@
 /// Color model for database
 class ColorModel {
+  /// hex string value of color
   final String hexString;
 
   /// Constructor
