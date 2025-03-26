@@ -1,5 +1,5 @@
 import 'package:solid_test_task/core/helper/database_helper.dart';
-import 'package:solid_test_task/domain/model/color.dart';
+import 'package:solid_test_task/domain/model/color_model.dart';
 import 'package:solid_test_task/domain/repository/color_repository.dart';
 import 'package:sqflite/sqflite.dart';
 

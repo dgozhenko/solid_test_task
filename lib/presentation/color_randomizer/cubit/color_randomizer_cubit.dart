@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:solid_test_task/core/extension/hex_color.dart';
-import 'package:solid_test_task/domain/model/color.dart';
+import 'package:solid_test_task/domain/model/color_model.dart';
 import 'package:solid_test_task/domain/repository/color_repository.dart';
 
 part 'color_randomizer_cubit.freezed.dart';
