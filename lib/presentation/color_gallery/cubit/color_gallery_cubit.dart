@@ -22,7 +22,7 @@ class ColorGalleryCubit extends Cubit<ColorGalleryState> {
       final colors = await colorRepository.getColors();
       emit(state.copyWith(colors: colors, loading: false));
     } catch (e) {
-      emit(state.copyWith(error: e.toString()));
+      emit(state.copyWith(error: e.toString(), loading: false));
     }
   }
 }
