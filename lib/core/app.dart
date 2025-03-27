@@ -4,6 +4,7 @@ import 'package:solid_test_task/core/helper/database_helper.dart';
 import 'package:solid_test_task/data/repository/color_repository_impl.dart';
 import 'package:solid_test_task/presentation/bottom_navigation/main_bottom_navigation_page.dart';
 import 'package:solid_test_task/presentation/color_detail/color_detail_page.dart';
+import 'package:solid_test_task/presentation/color_detail/cubit/color_detail_cubit.dart';
 import 'package:solid_test_task/presentation/color_gallery/cubit/color_gallery_cubit.dart';
 import 'package:solid_test_task/presentation/color_randomizer/cubit/color_randomizer_cubit.dart';
 
@@ -36,16 +37,21 @@ class App extends StatelessWidget {
                   colorRepository: context.read<ColorRepositoryImpl>(),
                 ),
           ),
+          BlocProvider<ColorDetailCubit>(
+            create:
+                (context) => ColorDetailCubit(
+                  colorRepository: context.read<ColorRepositoryImpl>(),
+                ),
+          ),
         ],
         child: MaterialApp(
           title: 'Color Randomizer',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           ),
+          debugShowCheckedModeBanner: false,
           home: const MainBottomNavigationPage(),
-          routes: {
-            ColorDetailPage.routeName: (_) => const ColorDetailPage(),
-          },
+          routes: {ColorDetailPage.routeName: (_) => const ColorDetailPage()},
         ),
       ),
     );

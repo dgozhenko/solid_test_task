@@ -7,6 +7,7 @@ environment:
   sdk: ^3.7.2
 
 dependencies:
+  bloc_test: ^10.0.0
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
@@ -24,6 +25,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.5.7
+  mockito: ^5.4.2
   solid_lints: ^0.3.0
 
 dependency_overrides:

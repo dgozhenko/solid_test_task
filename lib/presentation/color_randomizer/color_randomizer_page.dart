@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solid_test_task/presentation/color_randomizer/cubit/color_randomizer_cubit.dart';
+import 'package:solid_test_task/presentation/widgets/row/hex_color_row.dart';
 
 /// Color Randomizer Page that generate new color
 /// on screen tap, with ability to save color into local database
@@ -17,19 +18,33 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<ColorRandomizerCubit, ColorRandomizerState>(
       listener: (context, state) {
-        if (state.showDatabaseSaveSuccess == null) return;
-        if (state.showDatabaseSaveSuccess == false) return;
         if (state.error != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error ?? '')),
-          );
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.error ?? '')))
+              .closed
+              .then((_) {
+                if (!context.mounted) return;
+                context
+                    .read<ColorRandomizerCubit>()
+                    .clearErrorScaffoldMessage();
+              });
 
           return;
         }
+        if (state.showDatabaseSaveSuccess == null) return;
+        if (state.showDatabaseSaveSuccess == false) return;
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Color saved to database')),
-        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(
+              const SnackBar(content: Text('Color saved to database')),
+            )
+            .closed
+            .then((_) {
+              if (!context.mounted) return;
+              context
+                  .read<ColorRandomizerCubit>()
+                  .clearDatabaseSaveScaffoldMessage();
+            });
       },
       builder: (context, state) {
         return InkWell(
@@ -57,15 +72,21 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
+                        Text(
+                          state.firstColorGenerated
+                              ? '(Try long tap color if you like it)'
+                              : '(Tap to generate random color)',
+                          style: TextStyle(
+                            color: state.textColor,
+                            fontSize: 16,
+                          ),
+                        ),
                         AnimatedOpacity(
-                          opacity: state.showTipText ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 300),
-                          child: Text(
-                            '(Try long tap color if you like it)',
-                            style: TextStyle(
-                              color: state.textColor,
-                              fontSize: 16,
-                            ),
+                          opacity: state.firstColorGenerated ? 1.0 : 0.0,
+                          duration: const Duration(milliseconds: 3),
+                          child: HexColorRow(
+                            color: state.backgroundColor,
+                            foregroundColor: state.textColor,
                           ),
                         ),
                       ],

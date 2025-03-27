@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_unused_parameters
 part of 'color_randomizer_cubit.dart';
 
 /// State for Color Randomizer Cubit
@@ -8,7 +9,7 @@ class ColorRandomizerState with _$ColorRandomizerState {
   const factory ColorRandomizerState({
     required Color backgroundColor,
     required Color textColor,
-    required bool showTipText,
+    required bool firstColorGenerated,
     String? error,
     bool? showDatabaseSaveSuccess,
   }) = _ColorRandomizerState;

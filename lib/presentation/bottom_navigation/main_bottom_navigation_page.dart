@@ -15,10 +15,7 @@ class MainBottomNavigationPage extends StatefulWidget {
 
 class _MainBottomNavigationPageState extends State<MainBottomNavigationPage> {
   int currentBottomNavigationIndex = 0;
-  final bodies = [
-    const ColorRandomizerPage(),
-    const ColorGalleryPage(),
-  ];
+  final bodies = [const ColorRandomizerPage(), const ColorGalleryPage()];
 
   @override
   Widget build(BuildContext context) {
