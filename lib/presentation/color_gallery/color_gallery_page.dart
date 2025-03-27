@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solid_test_task/core/extension/hex_color.dart';
 import 'package:solid_test_task/presentation/color_detail/color_detail_page.dart';
 import 'package:solid_test_task/presentation/color_gallery/cubit/color_gallery_cubit.dart';
+import 'package:solid_test_task/presentation/widgets/row/hex_color_row.dart';
 
 /// Color gallery page displays stored into database colors
 class ColorGalleryPage extends StatefulWidget {
@@ -57,6 +58,7 @@ class _ColorGalleryPageState extends State<ColorGalleryPage> {
 
             itemBuilder: (_, index) {
               final colorItem = state.colors[index];
+              final hexColor = HexColor.fromHex(colorItem.hexString);
 
               return InkWell(
                 borderRadius: BorderRadius.circular(24),
@@ -73,16 +75,12 @@ class _ColorGalleryPageState extends State<ColorGalleryPage> {
                 child: GridTile(
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: HexColor.fromHex(colorItem.hexString),
+                      color: hexColor,
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: Center(
-                      child: Text(
-                        colorItem.hexString,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
+                      child: HexColorRow(
+                        color: hexColor,
                       ),
                     ),
                   ),

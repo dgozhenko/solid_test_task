@@ -9,7 +9,7 @@ class ColorRandomizerState with _$ColorRandomizerState {
   const factory ColorRandomizerState({
     required Color backgroundColor,
     required Color textColor,
-    required bool showTipText,
+    required bool firstColorGenerated,
     String? error,
     bool? showDatabaseSaveSuccess,
   }) = _ColorRandomizerState;

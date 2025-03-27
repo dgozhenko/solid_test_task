@@ -19,7 +19,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ColorRandomizerState {
   Color get backgroundColor => throw _privateConstructorUsedError;
   Color get textColor => throw _privateConstructorUsedError;
-  bool get showTipText => throw _privateConstructorUsedError;
+  bool get firstColorGenerated => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
   bool? get showDatabaseSaveSuccess => throw _privateConstructorUsedError;
 
@@ -40,7 +40,7 @@ abstract class $ColorRandomizerStateCopyWith<$Res> {
   $Res call({
     Color backgroundColor,
     Color textColor,
-    bool showTipText,
+    bool firstColorGenerated,
     String? error,
     bool? showDatabaseSaveSuccess,
   });
@@ -66,7 +66,7 @@ class _$ColorRandomizerStateCopyWithImpl<
   $Res call({
     Object? backgroundColor = null,
     Object? textColor = null,
-    Object? showTipText = null,
+    Object? firstColorGenerated = null,
     Object? error = freezed,
     Object? showDatabaseSaveSuccess = freezed,
   }) {
@@ -82,10 +82,10 @@ class _$ColorRandomizerStateCopyWithImpl<
                     ? _value.textColor
                     : textColor // ignore: cast_nullable_to_non_nullable
                         as Color,
-            showTipText:
-                null == showTipText
-                    ? _value.showTipText
-                    : showTipText // ignore: cast_nullable_to_non_nullable
+            firstColorGenerated:
+                null == firstColorGenerated
+                    ? _value.firstColorGenerated
+                    : firstColorGenerated // ignore: cast_nullable_to_non_nullable
                         as bool,
             error:
                 freezed == error
@@ -115,7 +115,7 @@ abstract class _$$ColorRandomizerStateImplCopyWith<$Res>
   $Res call({
     Color backgroundColor,
     Color textColor,
-    bool showTipText,
+    bool firstColorGenerated,
     String? error,
     bool? showDatabaseSaveSuccess,
   });
@@ -137,7 +137,7 @@ class __$$ColorRandomizerStateImplCopyWithImpl<$Res>
   $Res call({
     Object? backgroundColor = null,
     Object? textColor = null,
-    Object? showTipText = null,
+    Object? firstColorGenerated = null,
     Object? error = freezed,
     Object? showDatabaseSaveSuccess = freezed,
   }) {
@@ -153,10 +153,10 @@ class __$$ColorRandomizerStateImplCopyWithImpl<$Res>
                 ? _value.textColor
                 : textColor // ignore: cast_nullable_to_non_nullable
                     as Color,
-        showTipText:
-            null == showTipText
-                ? _value.showTipText
-                : showTipText // ignore: cast_nullable_to_non_nullable
+        firstColorGenerated:
+            null == firstColorGenerated
+                ? _value.firstColorGenerated
+                : firstColorGenerated // ignore: cast_nullable_to_non_nullable
                     as bool,
         error:
             freezed == error
@@ -179,7 +179,7 @@ class _$ColorRandomizerStateImpl implements _ColorRandomizerState {
   const _$ColorRandomizerStateImpl({
     required this.backgroundColor,
     required this.textColor,
-    required this.showTipText,
+    required this.firstColorGenerated,
     this.error,
     this.showDatabaseSaveSuccess,
   });
@@ -189,7 +189,7 @@ class _$ColorRandomizerStateImpl implements _ColorRandomizerState {
   @override
   final Color textColor;
   @override
-  final bool showTipText;
+  final bool firstColorGenerated;
   @override
   final String? error;
   @override
@@ -197,7 +197,7 @@ class _$ColorRandomizerStateImpl implements _ColorRandomizerState {
 
   @override
   String toString() {
-    return 'ColorRandomizerState(backgroundColor: $backgroundColor, textColor: $textColor, showTipText: $showTipText, error: $error, showDatabaseSaveSuccess: $showDatabaseSaveSuccess)';
+    return 'ColorRandomizerState(backgroundColor: $backgroundColor, textColor: $textColor, firstColorGenerated: $firstColorGenerated, error: $error, showDatabaseSaveSuccess: $showDatabaseSaveSuccess)';
   }
 
   @override
@@ -209,8 +209,8 @@ class _$ColorRandomizerStateImpl implements _ColorRandomizerState {
                 other.backgroundColor == backgroundColor) &&
             (identical(other.textColor, textColor) ||
                 other.textColor == textColor) &&
-            (identical(other.showTipText, showTipText) ||
-                other.showTipText == showTipText) &&
+            (identical(other.firstColorGenerated, firstColorGenerated) ||
+                other.firstColorGenerated == firstColorGenerated) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(
                   other.showDatabaseSaveSuccess,
@@ -224,7 +224,7 @@ class _$ColorRandomizerStateImpl implements _ColorRandomizerState {
     runtimeType,
     backgroundColor,
     textColor,
-    showTipText,
+    firstColorGenerated,
     error,
     showDatabaseSaveSuccess,
   );
@@ -246,7 +246,7 @@ abstract class _ColorRandomizerState implements ColorRandomizerState {
   const factory _ColorRandomizerState({
     required final Color backgroundColor,
     required final Color textColor,
-    required final bool showTipText,
+    required final bool firstColorGenerated,
     final String? error,
     final bool? showDatabaseSaveSuccess,
   }) = _$ColorRandomizerStateImpl;
@@ -256,7 +256,7 @@ abstract class _ColorRandomizerState implements ColorRandomizerState {
   @override
   Color get textColor;
   @override
-  bool get showTipText;
+  bool get firstColorGenerated;
   @override
   String? get error;
   @override

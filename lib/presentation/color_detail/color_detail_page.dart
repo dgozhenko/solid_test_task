@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solid_test_task/core/extension/hex_color.dart';
 import 'package:solid_test_task/domain/model/color_model.dart';
 import 'package:solid_test_task/presentation/color_detail/cubit/color_detail_cubit.dart';
+import 'package:solid_test_task/presentation/widgets/row/hex_color_row.dart';
 
 /// color detail page, displays color details
 /// and allows regeneration and deletion
@@ -54,27 +54,8 @@ class _ColorDetailPageState extends State<ColorDetailPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      spacing: 4,
-                      children: [
-                        Text(
-                          '${state.backgroundColor?.toHex()}',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () async {
-                            await Clipboard.setData(
-                              ClipboardData(
-                                text: state.backgroundColor?.toHex() ?? '',
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.copy),
-                        ),
-                      ],
+                    child: HexColorRow(
+                      color: state.backgroundColor ?? Colors.white,
                     ),
                   ),
                   Container(
