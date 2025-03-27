@@ -23,11 +23,11 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
               .showSnackBar(SnackBar(content: Text(state.error ?? '')))
               .closed
               .then((_) {
-            if (!context.mounted) return;
-            context
-                .read<ColorRandomizerCubit>()
-                .clearErrorScaffoldMessage();
-          });
+                if (!context.mounted) return;
+                context
+                    .read<ColorRandomizerCubit>()
+                    .clearErrorScaffoldMessage();
+              });
 
           return;
         }
@@ -41,7 +41,9 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
             .closed
             .then((_) {
               if (!context.mounted) return;
-              context.read<ColorRandomizerCubit>().clearDatabaseSaveScaffoldMessage();
+              context
+                  .read<ColorRandomizerCubit>()
+                  .clearDatabaseSaveScaffoldMessage();
             });
       },
       builder: (context, state) {

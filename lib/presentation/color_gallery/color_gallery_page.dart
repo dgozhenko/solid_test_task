@@ -78,11 +78,7 @@ class _ColorGalleryPageState extends State<ColorGalleryPage> {
                       color: hexColor,
                       borderRadius: BorderRadius.circular(24),
                     ),
-                    child: Center(
-                      child: HexColorRow(
-                        color: hexColor,
-                      ),
-                    ),
+                    child: Center(child: HexColorRow(color: hexColor)),
                   ),
                 ),
               );

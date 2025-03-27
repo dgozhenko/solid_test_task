@@ -60,12 +60,12 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
       if (e.isUniqueConstraintError()) {
         databaseError = 'Color already saved, try save another';
       }
-      emit(state.copyWith(error:databaseError));
-    }
-    catch (e) {
+      emit(state.copyWith(error: databaseError));
+    } catch (e) {
       emit(state.copyWith(error: e.toString()));
     }
   }
+
   /// clear error scaffold message from state
   void clearErrorScaffoldMessage() {
     emit(state.copyWith(error: null));

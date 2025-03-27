@@ -65,7 +65,6 @@ class ColorDetailCubit extends Cubit<ColorDetailState> {
         emit(state.copyWith(error: 'Initial color do not exists'));
 
         return;
-
       }
       final colorModel = ColorModel(hexString: state.backgroundColor!.toHex());
       await colorRepository.editColor(
