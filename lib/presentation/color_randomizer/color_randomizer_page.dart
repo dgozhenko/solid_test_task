@@ -20,9 +20,9 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
         if (state.showDatabaseSaveSuccess == null) return;
         if (state.showDatabaseSaveSuccess == false) return;
         if (state.error != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error ?? '')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.error ?? '')));
 
           return;
         }
@@ -57,15 +57,13 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        AnimatedOpacity(
-                          opacity: state.showTipText ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 300),
-                          child: Text(
-                            '(Try long tap color if you like it)',
-                            style: TextStyle(
-                              color: state.textColor,
-                              fontSize: 16,
-                            ),
+                        Text(
+                          state.showTipText
+                              ? '(Try long tap color if you like it)'
+                              : '(Tap to generate random color)',
+                          style: TextStyle(
+                            color: state.textColor,
+                            fontSize: 16,
                           ),
                         ),
                       ],

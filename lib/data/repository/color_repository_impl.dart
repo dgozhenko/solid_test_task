@@ -31,4 +31,28 @@ class ColorRepositoryImpl extends ColorRepository {
         ColorModel(hexString: hexString),
     ];
   }
+
+  @override
+  Future<void> deleteColor(String hexString) async {
+    final database = await databaseHelper.database;
+    await database.delete(
+      'colors',
+      where: 'hexString = ?',
+      whereArgs: [hexString],
+    );
+  }
+
+  @override
+  Future<void> editColor({
+    required String oldHexString,
+    required Map<String, dynamic> colorMap,
+  }) async {
+    final database = await databaseHelper.database;
+    await database.update(
+      'colors',
+      colorMap,
+      where: 'hexString = ?',
+      whereArgs: [oldHexString],
+    );
+  }
 }

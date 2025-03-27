@@ -65,7 +65,10 @@ class _ColorGalleryPageState extends State<ColorGalleryPage> {
                     context,
                     ColorDetailPage.routeName,
                     arguments: colorItem,
-                  );
+                  ).then((_) async {
+                    if (!context.mounted) return;
+                    await context.read<ColorGalleryCubit>().getColors();
+                  });
                 },
                 child: GridTile(
                   child: DecoratedBox(
