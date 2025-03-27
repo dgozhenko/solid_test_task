@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_late_keyword
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -54,9 +55,7 @@ void main() {
   blocTest<ColorGalleryCubit, ColorGalleryState>(
     '[getColors] loading -> empty colors, loading == false',
     build: () {
-      when(
-        colorRepository.getColors(),
-      ).thenAnswer((_) async => []);
+      when(colorRepository.getColors()).thenAnswer((_) async => []);
 
       return colorGalleryCubit;
     },
@@ -65,12 +64,9 @@ void main() {
     },
     expect:
         () => [
-      const ColorGalleryState(loading: true, colors: []),
-      const ColorGalleryState(
-        loading: false,
-        colors: [],
-      ),
-    ],
+          const ColorGalleryState(loading: true, colors: []),
+          const ColorGalleryState(loading: false, colors: []),
+        ],
   );
 
   blocTest<ColorGalleryCubit, ColorGalleryState>(
@@ -87,12 +83,12 @@ void main() {
     },
     expect:
         () => [
-      const ColorGalleryState(loading: true, colors: []),
-      const ColorGalleryState(
-        loading: false,
-        colors: [],
-        error: 'Exception: Cannot access Database'
-      ),
-    ],
+          const ColorGalleryState(loading: true, colors: []),
+          const ColorGalleryState(
+            loading: false,
+            colors: [],
+            error: 'Exception: Cannot access Database',
+          ),
+        ],
   );
 }

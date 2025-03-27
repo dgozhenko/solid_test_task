@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_late_keyword
 import 'dart:ui';
 
 import 'package:bloc_test/bloc_test.dart';
@@ -7,7 +8,6 @@ import 'package:mockito/mockito.dart';
 import 'package:solid_test_task/core/extension/hex_color.dart';
 import 'package:solid_test_task/domain/repository/color_repository.dart';
 import 'package:solid_test_task/presentation/color_randomizer/cubit/color_randomizer_cubit.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'color_randomizer_cubit_test.mocks.dart';
 
@@ -111,11 +111,7 @@ void main() {
       cubit.clearErrorScaffoldMessage();
     },
     expect:
-        () => [
-      predicate<ColorRandomizerState>(
-            (state) => state.error == null,
-      ),
-    ],
+        () => [predicate<ColorRandomizerState>((state) => state.error == null)],
   );
 
   blocTest<ColorRandomizerCubit, ColorRandomizerState>(
@@ -128,9 +124,9 @@ void main() {
     },
     expect:
         () => [
-      predicate<ColorRandomizerState>(
+          predicate<ColorRandomizerState>(
             (state) => state.showDatabaseSaveSuccess == null,
-      ),
-    ],
+          ),
+        ],
   );
 }

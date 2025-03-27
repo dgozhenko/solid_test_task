@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_late_keyword
 import 'dart:ui';
 
 import 'package:bloc_test/bloc_test.dart';
@@ -54,6 +55,7 @@ void main() {
       colorDetailCubit.setInitialColors(
         const ColorModel(hexString: '#ffffffff'),
       );
+
       return colorDetailCubit;
     },
     act: (cubit) {
