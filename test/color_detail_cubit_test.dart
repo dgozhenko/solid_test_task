@@ -4,7 +4,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:solid_test_task/core/extension/hex_color.dart';
 import 'package:solid_test_task/domain/model/color_model.dart';
 import 'package:solid_test_task/domain/repository/color_repository.dart';
 import 'package:solid_test_task/presentation/color_detail/cubit/color_detail_cubit.dart';
@@ -33,7 +32,7 @@ void main() {
   });
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with initial hex, and background color',
+    '[setInitialColors] initial hex, and background color',
     build: () {
       return colorDetailCubit;
     },
@@ -50,7 +49,7 @@ void main() {
   );
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with new background color, initial hex should be same',
+    '[generateRandomColors] new background color, initial hex should be same',
     build: () {
       colorDetailCubit.setInitialColors(
         const ColorModel(hexString: '#ffffffff'),
@@ -71,7 +70,7 @@ void main() {
   );
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with navigate back after deleting',
+    '[deleteColor] navigate back after deleting',
     build: () {
       colorDetailCubit.setInitialColors(
         const ColorModel(hexString: '#ffffffff'),
@@ -97,7 +96,7 @@ void main() {
   );
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with error after deleting error',
+    '[deleteColor] error after deletion error',
     build: () {
       colorDetailCubit.setInitialColors(
         const ColorModel(hexString: '#ffffffff'),
@@ -123,16 +122,14 @@ void main() {
   );
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with navigate back after editing color',
+    '[editColor] navigate back after editing color',
     build: () {
       const colorModel = ColorModel(hexString: '#ffffffff');
-      colorDetailCubit.setInitialColors(
-        colorModel
-      );
+      colorDetailCubit.setInitialColors(colorModel);
       when(
         colorRepository.editColor(
           oldHexString: colorDetailCubit.state.initialHexString,
-          colorMap: colorModel.toMap()
+          colorMap: colorModel.toMap(),
         ),
       ).thenAnswer((_) async => []);
 
@@ -152,17 +149,15 @@ void main() {
   );
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with error after editing error color',
+    '[editColor] error after editing error color',
     build: () {
       const colorModel = ColorModel(hexString: '#ffffffff');
-      colorDetailCubit.setInitialColors(
-          colorModel
-      );
+      colorDetailCubit.setInitialColors(colorModel);
 
       when(
         colorRepository.editColor(
-            oldHexString: colorDetailCubit.state.initialHexString,
-            colorMap: colorModel.toMap(),
+          oldHexString: colorDetailCubit.state.initialHexString,
+          colorMap: colorModel.toMap(),
         ),
       ).thenThrow(Exception('Cannot edit color'));
 
@@ -173,16 +168,16 @@ void main() {
     },
     expect:
         () => [
-      const ColorDetailState(
-        error: 'Exception: Cannot edit color',
-        backgroundColor: Color(0xffffffff),
-        initialHexString: '#ffffffff',
-      ),
-    ],
+          const ColorDetailState(
+            error: 'Exception: Cannot edit color',
+            backgroundColor: Color(0xffffffff),
+            initialHexString: '#ffffffff',
+          ),
+        ],
   );
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with error after editing error color that is null',
+    '[editColor] error after editing error color that is null',
     build: () {
       const colorModel = ColorModel(hexString: '#ffffffff');
 
@@ -200,16 +195,16 @@ void main() {
     },
     expect:
         () => [
-      const ColorDetailState(
-        error: 'Background color do not exists',
-        backgroundColor: null,
-        initialHexString: null,
-      ),
-    ],
+          const ColorDetailState(
+            error: 'Background color do not exists',
+            backgroundColor: null,
+            initialHexString: null,
+          ),
+        ],
   );
 
   blocTest<ColorDetailCubit, ColorDetailState>(
-    'emits state with navigateBack == null',
+    '[clearNavigation] navigateBack == null',
     build: () {
       return colorDetailCubit;
     },
@@ -218,10 +213,7 @@ void main() {
     },
     expect:
         () => [
-      predicate<ColorDetailState>(
-            (state) =>
-        state.navigateBack == null,
-      ),
-    ],
+          predicate<ColorDetailState>((state) => state.navigateBack == null),
+        ],
   );
 }

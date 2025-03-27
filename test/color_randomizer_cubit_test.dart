@@ -39,7 +39,7 @@ void main() {
   });
 
   blocTest<ColorRandomizerCubit, ColorRandomizerState>(
-    'emits state with new background color, and firstColorGenerated',
+    '[generateRandomColors] new background color, firstColorGenerated == true',
     build: () {
       return colorRandomizerCubit;
     },
@@ -57,7 +57,7 @@ void main() {
   );
 
   blocTest<ColorRandomizerCubit, ColorRandomizerState>(
-    'emits state with showDatabaseSuccess == true when color saved',
+    '[insertColor] showDatabaseSuccess == true when color saved',
     build: () {
       final colorMap = {
         'hexString': colorRandomizerCubit.state.backgroundColor.toHex(),
@@ -80,7 +80,7 @@ void main() {
   );
 
   blocTest<ColorRandomizerCubit, ColorRandomizerState>(
-    'emits state with error message when database issue',
+    '[insertColor] error message when error occurs',
     build: () {
       final colorMap = {
         'hexString': colorRandomizerCubit.state.backgroundColor.toHex(),
@@ -103,7 +103,7 @@ void main() {
   );
 
   blocTest<ColorRandomizerCubit, ColorRandomizerState>(
-    'emits state with error == null',
+    '[clearErrorScaffoldMessage] error == null',
     build: () {
       return colorRandomizerCubit;
     },
@@ -119,12 +119,12 @@ void main() {
   );
 
   blocTest<ColorRandomizerCubit, ColorRandomizerState>(
-    'emits state with showDatabaseSaveSuccess == null',
+    '[clearDatabaseSaveScaffoldMessage] showDatabaseSaveSuccess == null',
     build: () {
       return colorRandomizerCubit;
     },
     act: (cubit) {
-      cubit.clearDatabaseSaveToast();
+      cubit.clearDatabaseSaveScaffoldMessage();
     },
     expect:
         () => [

@@ -30,7 +30,7 @@ void main() {
   });
 
   blocTest<ColorGalleryCubit, ColorGalleryState>(
-    'emits state with loading then emit colors and loading == false',
+    '[getColors] loading -> colors, loading == false',
     build: () {
       when(
         colorRepository.getColors(),
@@ -52,7 +52,7 @@ void main() {
   );
 
   blocTest<ColorGalleryCubit, ColorGalleryState>(
-    'emits state with loading then emit empty colors and loading == false',
+    '[getColors] loading -> empty colors, loading == false',
     build: () {
       when(
         colorRepository.getColors(),
@@ -74,7 +74,7 @@ void main() {
   );
 
   blocTest<ColorGalleryCubit, ColorGalleryState>(
-    'emits state with loading then emit error and loading == false',
+    '[getColors] loading -> error, loading == false',
     build: () {
       when(
         colorRepository.getColors(),
