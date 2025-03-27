@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:solid_test_task/core/extension/hex_color.dart';
 import 'package:solid_test_task/domain/model/color_model.dart';
@@ -13,6 +13,7 @@ part 'color_detail_state.dart';
 
 /// Color detail cubit with ability to edit, delete color
 class ColorDetailCubit extends Cubit<ColorDetailState> {
+  /// color repository for accessing colors database
   final ColorRepository colorRepository;
 
   /// constructor
@@ -21,6 +22,7 @@ class ColorDetailCubit extends Cubit<ColorDetailState> {
     const ColorDetailState(backgroundColor: null, initialHexString: null),
   );
 
+  /// store initial colors from navigation args
   void setInitialColors(ColorModel colorModel) {
     final color = HexColor.fromHex(colorModel.hexString);
     emit(
@@ -45,6 +47,7 @@ class ColorDetailCubit extends Cubit<ColorDetailState> {
     );
   }
 
+  /// delete color from database
   Future<void> deleteColor() async {
     try {
       if (state.initialHexString == null) return;
@@ -55,6 +58,7 @@ class ColorDetailCubit extends Cubit<ColorDetailState> {
     }
   }
 
+  /// edit color in database
   Future<void> editColor() async {
     try {
       if (state.backgroundColor == null) {
@@ -74,6 +78,7 @@ class ColorDetailCubit extends Cubit<ColorDetailState> {
     }
   }
 
+  /// clear cubit navigation after navigation
   void clearNavigation() {
     emit(state.copyWith(navigateBack: null));
   }

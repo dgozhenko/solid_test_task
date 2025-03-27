@@ -41,7 +41,7 @@ class App extends StatelessWidget {
             create:
                 (context) => ColorDetailCubit(
                   colorRepository: context.read<ColorRepositoryImpl>(),
-                )
+                ),
           ),
         ],
         child: MaterialApp(
