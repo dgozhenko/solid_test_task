@@ -41,7 +41,7 @@ class _ColorRandomizerPageState extends State<ColorRandomizerPage> {
             .closed
             .then((_) {
               if (!context.mounted) return;
-              context.read<ColorRandomizerCubit>().clearDatabaseSaveToast();
+              context.read<ColorRandomizerCubit>().clearDatabaseSaveScaffoldMessage();
             });
       },
       builder: (context, state) {

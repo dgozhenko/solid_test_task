@@ -72,7 +72,7 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
   }
 
   /// clear database save toast
-  void clearDatabaseSaveToast() {
+  void clearDatabaseSaveScaffoldMessage() {
     emit(state.copyWith(showDatabaseSaveSuccess: null));
   }
 }
