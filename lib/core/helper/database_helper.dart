@@ -6,6 +6,7 @@ import 'package:sqflite/sqflite.dart';
 /// SQFLite database helper
 class DatabaseHelper {
   static Database? _database;
+
   /// singleton instance of database
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 

@@ -44,6 +44,7 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
       ),
     );
   }
+
   /// save color to database
   Future<void> saveColor() async {
     try {
@@ -60,6 +61,7 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
       emit(state.copyWith(error: e.toString()));
     }
   }
+
   /// clear database save toast
   void clearDatabaseSaveToast() {
     emit(state.copyWith(showDatabaseSaveSuccess: null));

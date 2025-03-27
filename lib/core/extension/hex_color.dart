@@ -23,18 +23,14 @@ extension HexColor on Color {
   /// method to convert color into hex string
   /// can generate string with leading hex or without it
   String toHex({bool leadingHashSign = true}) {
-    const maxIntValue = 255;
+    const rgbInt = 255;
     const radix = 16;
     const padAmount = 2;
 
     return '${leadingHashSign ? '#' : ''}'
-        '${(maxIntValue * a).toInt().toRadixString(radix)
-              .padLeft(padAmount, '0')}'
-        '${(maxIntValue * r).toInt().toRadixString(radix)
-             .padLeft(padAmount, '0')}'
-        '${(maxIntValue * g).toInt().toRadixString(radix)
-             .padLeft(padAmount, '0')}'
-        '${(maxIntValue * b).toInt().toRadixString(radix)
-              .padLeft(padAmount, '0')}';
+        '${(rgbInt * a).toInt().toRadixString(radix).padLeft(padAmount, '0')}'
+        '${(rgbInt * r).toInt().toRadixString(radix).padLeft(padAmount, '0')}'
+        '${(rgbInt * g).toInt().toRadixString(radix).padLeft(padAmount, '0')}'
+        '${(rgbInt * b).toInt().toRadixString(radix).padLeft(padAmount, '0')}';
   }
 }

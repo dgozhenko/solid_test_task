@@ -9,7 +9,6 @@ import 'package:solid_test_task/domain/model/color_model.dart';
 import 'package:solid_test_task/domain/repository/color_repository.dart';
 
 part 'color_detail_cubit.freezed.dart';
-
 part 'color_detail_state.dart';
 
 /// Color detail cubit with ability to edit, delete color
@@ -19,9 +18,9 @@ class ColorDetailCubit extends Cubit<ColorDetailState> {
 
   /// constructor
   ColorDetailCubit({required this.colorRepository})
-      : super(
-    const ColorDetailState(backgroundColor: null, initialHexString: null),
-  );
+    : super(
+        const ColorDetailState(backgroundColor: null, initialHexString: null),
+      );
 
   /// store initial colors from navigation args
   void setInitialColors(ColorModel colorModel) {
@@ -40,12 +39,7 @@ class ColorDetailCubit extends Cubit<ColorDetailState> {
     const maxHexValueForColor = 0xffffffff;
     final randomColor = Color(Random().nextInt(maxHexValueForColor));
 
-
-    emit(
-      state.copyWith(
-        backgroundColor: randomColor,
-      ),
-    );
+    emit(state.copyWith(backgroundColor: randomColor));
   }
 
   /// delete color from database
