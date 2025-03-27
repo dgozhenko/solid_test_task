@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_non_null_assertion
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';

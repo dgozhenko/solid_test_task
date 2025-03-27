@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_non_null_assertion
 import 'dart:math';
 import 'dart:ui';
 
