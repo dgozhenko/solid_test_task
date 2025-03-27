@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_unused_parameters
 part of 'color_gallery_cubit.dart';
 
 /// State for Color Randomizer Cubit
