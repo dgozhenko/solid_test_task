@@ -37,7 +37,7 @@ class HexColorRow extends StatelessWidget {
           onPressed: () async {
             await Clipboard.setData(ClipboardData(text: hexColor));
           },
-          icon: Icon(Icons.copy, color: foregroundColor,),
+          icon: Icon(Icons.copy, color: foregroundColor),
         ),
       ],
     );
