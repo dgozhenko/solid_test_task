@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:solid_test_task/core/extension/hex_color.dart';
 import 'package:solid_test_task/domain/model/color_model.dart';
 import 'package:solid_test_task/domain/repository/color_repository.dart';
+import 'package:sqflite/sqflite.dart';
 
 part 'color_randomizer_cubit.freezed.dart';
 part 'color_randomizer_state.dart';
@@ -21,7 +22,7 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
         const ColorRandomizerState(
           backgroundColor: Color(0xffffffff),
           textColor: Color(0xff000000),
-          showTipText: false,
+          firstColorGenerated: false,
         ),
       );
 
@@ -40,7 +41,7 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
       state.copyWith(
         backgroundColor: randomColor,
         textColor: luminanceCalculatedTextColor,
-        showTipText: true,
+        firstColorGenerated: true,
       ),
     );
   }
@@ -54,12 +55,20 @@ class ColorRandomizerCubit extends Cubit<ColorRandomizerState> {
         ColorModel(hexString: hexString).toMap(),
       );
       emit(state.copyWith(showDatabaseSaveSuccess: true));
-      await Future.delayed(const Duration(seconds: 2)).then((_) {
-        clearDatabaseSaveToast();
-      });
-    } catch (e) {
+    } on DatabaseException catch (e) {
+      String databaseError = 'Unknown Database Error';
+      if (e.isUniqueConstraintError()) {
+        databaseError = 'Color already saved, try save another';
+      }
+      emit(state.copyWith(error:databaseError));
+    }
+    catch (e) {
       emit(state.copyWith(error: e.toString()));
     }
+  }
+  /// clear error scaffold message from state
+  void clearErrorScaffoldMessage() {
+    emit(state.copyWith(error: null));
   }
 
   /// clear database save toast
